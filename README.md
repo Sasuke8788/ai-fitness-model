@@ -1,61 +1,75 @@
 # AI Gym & Fitness Assistant
 
-Full-stack AI-based fitness assistant with modular models for workout analysis, diet recommendation, behavior prediction, and admin analytics.
+A full-stack fitness platform that combines workout analysis, diet planning, conversational coaching, and admin analytics in one application.
 
-## Deliverables Implemented
+## Project Summary
 
-- Fully functional AI-based Gym & Fitness Assistant system
-- Modular AI models:
-  - Workout detection/analysis (`backend/workout_model.py`)
-  - Diet recommendation (`backend/diet.py`)
-  - Behavior prediction (`backend/behavior.py`)
-- Backend APIs and integration layer:
-  - Flask API (`backend/app.py`)
-  - Frontend API client (`frontend/src/api/client.js`)
-- Documentation and testing artifacts:
-  - Test suite (`backend/tests/test_backend.py`)
-  - Testing report (`docs/testing-report.md`)
-  - Deployment guide (`docs/deployment.md`)
-- Final deployment readiness with admin dashboard + analytics:
-  - Admin UI (`frontend/src/pages/Admin.js`)
-  - Admin APIs (`/api/v1/admin/analytics`, `/api/v1/admin/events`)
+This project was built as an AI-powered gym assistant with a modular backend and a React-based frontend. The system supports:
 
-## Architecture
+- Workout form analysis from joint-angle input
+- Personalized diet recommendations (BMI, calories, macros)
+- Behavior/adherence prediction
+- AI coaching chat endpoint
+- Admin analytics for usage and model output visibility
 
-- **Frontend**: React + Tailwind, routes for Dashboard, Workout, Diet, Chat, Admin.
-- **Backend**: Flask REST API with modular model files.
-- **Analytics**: In-memory event tracking for usage and model-quality snapshot.
+## Tech Stack
 
-## API Endpoints
+- Frontend: React, React Router, Tailwind CSS
+- Backend: Flask, Flask-CORS
+- AI/ML modules: custom Python model services in separate modules
+- Testing: Python unittest
 
-### Core
+## Core Modules
+
+- Workout analysis: `backend/workout_model.py`
+- Diet recommendation: `backend/diet.py`
+- Behavior prediction: `backend/behavior.py`
+- Chat service: `backend/chatbot.py`
+- Analytics store: `backend/analytics.py`
+
+## API Overview
+
+### System
+
+- `GET /`
 - `GET /health`
+
+### User-facing
+
 - `POST /api/v1/chat`
 - `POST /api/v1/diet/recommendation`
 - `POST /api/v1/workout/analyze`
 - `POST /api/v1/behavior/predict`
 
 ### Admin
+
 - `GET /api/v1/admin/analytics`
 - `GET /api/v1/admin/events?limit=20`
 
-## Local Setup
+## Local Development Setup
 
-### Backend
+### 1) Backend
+
 ```bash
 cd backend
 pip install -r requirements.txt
 python app.py
 ```
 
-### Frontend
+Backend runs on http://127.0.0.1:5000 by default.
+
+### 2) Frontend
+
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
-Optional env var for frontend:
+Frontend runs on http://localhost:3000 by default.
+
+Optional frontend environment variable:
+
 - `REACT_APP_API_BASE_URL=http://127.0.0.1:5000`
 
 ## Running Tests
@@ -65,6 +79,22 @@ cd backend
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-## Deployment
+Test file:
 
-See [docs/deployment.md](docs/deployment.md) for deployment checklist and production notes.
+- `backend/tests/test_backend.py`
+
+## Project Structure
+
+- `backend/` Flask API and model modules
+- `frontend/` React user interface
+- `docs/` deployment and testing documentation
+
+## Documentation
+
+- Deployment guide: [docs/deployment.md](docs/deployment.md)
+- Testing report: [docs/testing-report.md](docs/testing-report.md)
+
+## Notes
+
+- Sensitive files (such as `.env`) are excluded from version control.
+- The admin dashboard is available at the `/admin` route in the frontend app.
